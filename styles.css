@@ -33,6 +33,7 @@ body {
     border-radius: 5px;
     border: solid black 1px;
     vertical-align: middle;
+    overflow: hidden;
 }
 
 .display-text {
@@ -45,6 +46,10 @@ body {
     justify-content: space-between;
     flex: auto;
     margin-top: 20px;
+}
+
+button:hover {
+    background-color: grey;
 }
 
 .row {
@@ -63,4 +68,8 @@ button {
 
 .top {
     background-color: rgb(212, 92, 1);
+}
+
+.top:hover {
+    background-color: rgb(132, 57, 0);
 }

@@ -38,15 +38,25 @@ function operate(operator, num1, num2) {
     }
 }
 
-const display = document.querySelector(".display");
+const display = document.querySelector(".display-text");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
+const displayBox = document.querySelector(".display");
+
+display.style.maxWidth = displayBox.offsetWidth + 'px';
 
 function printall() {
     console.log("num1: ", num1);
     console.log("num2: ", num2);
     console.log("op: ", operator);
     console.log("res: ", result);
+}
+
+function blinkDisplay() {
+    display.style.visibility = "hidden";
+    setTimeout(function() {
+        display.style.visibility = "visible";
+    }, 100);
 }
 
 for (let i = 0; i < numbers.length; i++) {
@@ -71,7 +81,8 @@ for (let i = 0; i < numbers.length; i++) {
 
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener("click", function() {
-        if (operator === "/" && Number(num2) === 0) {
+        blinkDisplay();
+        if (operator === "/" && Number(num2) === 0) {    
             display.innerHTML = "Error division by zero";
             clear();
         } else {
@@ -92,6 +103,7 @@ const equals = document.querySelector(".equals");
 equals.addEventListener("click", () => {
     if (num1 && num2) {
         if (operator === "/" && Number(num2) === 0) {
+            blinkDisplay();
             display.innerHTML = "Error division by zero";
             clear();
         } else {
@@ -99,6 +111,7 @@ equals.addEventListener("click", () => {
             num1 = result;
             num2 = "";
             operator = "=";
+            blinkDisplay();
             display.innerHTML = result;
         }
         printall();
@@ -107,6 +120,7 @@ equals.addEventListener("click", () => {
 
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
+    blinkDisplay();
     display.innerHTML = "0";
     clear();
     printall();
